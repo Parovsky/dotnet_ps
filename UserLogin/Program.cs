@@ -6,16 +6,9 @@ namespace UserLogin
     {
         static void Main(string[] args)
         {
-            var user = new User();
+            var user = UserData.GetUser();
 
-            user.Username = "Ivan";
-            user.Password = "password";
-            user.FakNum = "123219015";
-            user.Role = 1;
-
-            var loginValidation = new LoginValidation();
-
-            if (loginValidation.ValidateUserInput())
+            if (new LoginValidation().ValidateUserInput())
             {
                 Console.WriteLine("Username: " + user.Username);
                 Console.WriteLine("User password: " + user.Password);
