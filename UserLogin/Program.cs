@@ -13,10 +13,15 @@ namespace UserLogin
             user.FakNum = "123219015";
             user.Role = 1;
 
-            Console.WriteLine("Username: " + user.Username);
-            Console.WriteLine("User password: " + user.Password);
-            Console.WriteLine("User faculty number: : " + user.FakNum);
-            Console.WriteLine("User Role: : " + user.Role);
+            var loginValidation = new LoginValidation();
+
+            if (loginValidation.ValidateUserInput())
+            {
+                Console.WriteLine("Username: " + user.Username);
+                Console.WriteLine("User password: " + user.Password);
+                Console.WriteLine("User faculty number: : " + user.FakNum);
+                Console.WriteLine("User Role: : " + user.Role);
+            }
         }
     }
 }
