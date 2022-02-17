@@ -6,7 +6,7 @@ namespace UserLogin
     {
         public String Username;
 
-        public String password;
+        public String Password;
 
         public String FakNum;
 
