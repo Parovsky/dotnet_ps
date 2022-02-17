@@ -3,13 +3,23 @@ namespace UserLogin
 {
     public static class UserData
     {
-        public static User TestUser;
+        public static User TestUser
+        {
+            get
+            {
+                ResetTestUserData();
+                return _testUser;
+            }
+            set { }
+        }
+
+        private static User _testUser;
 
         private static void ResetTestUserData()
         {
-            if (TestUser == null)
+            if (_testUser == null)
             {
-                TestUser = new User
+                _testUser = new User
                 {
                     Username = "Ivan",
                     Password = "password",
@@ -17,12 +27,6 @@ namespace UserLogin
                     Role = 1
                 };
             }
-        }
-
-        public static User GetUser()
-        {
-            ResetTestUserData();
-            return TestUser;
         }
     }
 }

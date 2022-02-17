@@ -3,7 +3,8 @@ namespace UserLogin
 {
     public class LoginValidation
     {
-        public static UserRoles currentUserRole;
+        public static UserRoles currentUserRole
+        { get; private set; }
 
         public LoginValidation()
         {
