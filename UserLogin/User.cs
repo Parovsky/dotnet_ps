@@ -4,16 +4,22 @@ namespace UserLogin
 {
     public class User
     {
-        public String Username
+        public string Username
         { get; set; }
 
-        public String Password
+        public string Password
         { get; set; }
 
-        public String FakNum
+        public string FakNum
         { get; set; }
 
-        public Int32 Role
+        public int Role
+        { get; set; }
+
+        public DateTime Created
+        { get; set; }
+
+        public DateTime ExpireOn
         { get; set; }
 
         public User()
