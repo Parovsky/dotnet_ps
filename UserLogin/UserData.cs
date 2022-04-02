@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UserLogin
 {
@@ -56,14 +57,11 @@ namespace UserLogin
 
         static public User IsUserPassCorrect(string UserName, string Password)
         {
-            foreach(User user in TestUsers)
-            {
-                if(user.Username.Equals(UserName) && user.Password.Equals(Password))
-                {
-                    return user;
-                }
-            }
-            return null;
+            User user = (from u in TestUsers
+                          where u.Username.Equals(UserName) && u.Password.Equals(Password)
+                          select u).DefaultIfEmpty(null).First();
+
+            return user;
         }
 
         static public void SetUserActiveTo(string UserName, DateTime date)

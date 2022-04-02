@@ -2,12 +2,21 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace UserLogin
 {
     static public class Logger
     {
         static private List<string> currentSessionActivities = new List<string>();
+
+        static public IEnumerable<string> GetCurrentSessionActivities(string filter)
+        {
+            List<string> filteredActivities = (from activity in currentSessionActivities
+                                               where activity.Contains(filter)
+                                               select activity).ToList();
+            return filteredActivities;
+        }
 
         static public void LogActivity(string activity)
         {
@@ -29,6 +38,7 @@ namespace UserLogin
                 + errorMessage;
             currentSessionActivities.Add(errorMessage);
             WriteLogInFile(errorMessage);
+            Console.WriteLine(errorMessage);
         }
 
         static private void WriteLogInFile(string activity)
@@ -52,16 +62,6 @@ namespace UserLogin
                 } while (line != null);
                 outputFile.Close();
             }
-        }
-
-        static public void ShowCurrentActivities()
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach(string line in currentSessionActivities)
-            {
-                sb.Append(line + "\n");
-            }
-            Console.WriteLine(sb);
         }
     }
 }
