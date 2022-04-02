@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace UserLogin
 {
@@ -60,7 +62,7 @@ namespace UserLogin
                     Logger.ShowLogFile();
                     return 4;
                 case "5":
-                    Logger.ShowCurrentActivities();
+                    ShowCurrentSessionActivities();
                     return 5;
                 default: return 0;
             }
@@ -82,6 +84,17 @@ namespace UserLogin
             Console.Write("Enter expire date: ");
             DateTime dateTime = DateTime.Parse(Console.ReadLine());
             UserData.SetUserActiveTo(userName, dateTime);
+        }
+
+        private static void ShowCurrentSessionActivities()
+        {
+            StringBuilder sb = new StringBuilder();
+            IEnumerable<string> currentSessionActivities = Logger.GetCurrentSessionActivities("INFO");
+            foreach (string line in currentSessionActivities)
+            {
+                sb.Append(line + "\n");
+            }
+            Console.WriteLine(sb);
         }
     }
 
