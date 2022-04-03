@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentInfoSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,52 @@ namespace StudentInfoSystem_
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public void EnterStudentData(Student student)
+        {
+            inputFirstName.Text = student.FirstName;
+            inputSecondName.Text = student.SecondName;
+            inputLastName.Text = student.LastName;
+            inputFac.Text = student.Faculty;
+            inputMajor.Text = student.Major;
+            inputOKS.Text = student.OKS;
+            inputStatus.Text = student.Status;
+            inputFacNum.Text = student.FacNum;
+            inputCourse.Text = student.Course.ToString();
+            inputStream.Text = student.Stream.ToString();
+            inputGroup.Text = student.Group.ToString();
+        }
+
+        public void CleanInputs()
+        {
+            foreach (var item in MainGrid.Children)
+            {
+                if (item is TextBox)
+                {
+                    ((TextBox)item).Text = "";
+                }
+            }
+        }
+        public void EnableInputs()
+        {
+            foreach (var item in MainGrid.Children)
+            {
+                if (item is TextBox)
+                {
+                    ((TextBox)item).IsEnabled = true;
+                }
+            }
+        }
+        public void DisableInputs()
+        {
+            foreach (var item in MainGrid.Children)
+            {
+                if (item is TextBox)
+                {
+                    ((TextBox)item).IsEnabled = false;
+                }
+            }
         }
     }
 }
