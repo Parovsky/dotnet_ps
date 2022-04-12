@@ -15,5 +15,12 @@
         <Label Content="Име:" Margin="10,118,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBox x:Name="inputName_Copy2" Width="120" Margin="62,122,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"/>
         <Button x:Name="btnHello" Content="Здрасти" Click="btnHello_Click" Margin="134,154,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <ListBox x:Name="peopleListBox" Margin="0,55,10,0" Width="150" Height="110" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <ListBoxItem Content="Mike"/>
+            <ListBoxItem Content="Lisa"/>
+            <ListBoxItem Content="John"/>
+            <ListBoxItem Content="Mary"/>
+        </ListBox>
+        <Button x:Name="btnHelloToSelectedItem" Content="Здрасти" Width="50" Height="20" Margin="0,174,110,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="btnHelloToSelectedItem_Click"/>
     </Grid>
 </Window>
