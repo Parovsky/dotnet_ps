@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +19,27 @@ namespace Expenselt
     /// <summary>
     /// Логика взаимодействия для ExpenseltHome.xaml
     /// </summary>
-    public partial class ExpenseltHome : Window
+    public partial class ExpenseltHome : Window, INotifyPropertyChanged
     {
         public string MainCaptionText { get; set; }
 
         public List<Person> ExpenseDataSource { get; set; }
 
-        public DateTime LastChecked { get; set; }
+        public ObservableCollection<string> PersonsChecked { get; set; }
+
+        private DateTime lastChecked { get; set; }
+
+        public DateTime LastChecked { 
+            get { return lastChecked; } 
+            set 
+            { 
+                lastChecked = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("LastChecked"));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ExpenseltHome()
         {
@@ -106,16 +122,24 @@ namespace Expenselt
                 }
             };
 
-            
+            PersonsChecked = new ObservableCollection<string>();
+
+
         }
 
-    public void btnView_Click(object sender, RoutedEventArgs e)
-    {
-        Person selectedPerson = peopleListBox.SelectedItem as Person;
-        ExpenseReport expenseReport = new ExpenseReport(selectedPerson);
-        expenseReport.Height = this.Height;
-        expenseReport.Width = this.Width;
-        expenseReport.ShowDialog();
+        public void btnView_Click(object sender, RoutedEventArgs e)
+        {
+            Person selectedPerson = peopleListBox.SelectedItem as Person;
+            ExpenseReport expenseReport = new ExpenseReport(selectedPerson);
+            expenseReport.Height = this.Height;
+            expenseReport.Width = this.Width;
+            expenseReport.ShowDialog();
+        }
+
+        private void peopleListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LastChecked = DateTime.Now;
+            PersonsChecked.Add((peopleListBox.SelectedItem as Person).Name);
+        }
     }
-}
 }

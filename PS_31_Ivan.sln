@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentInfoSystem", "Studen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFhello", "WPFhello\WPFhello.csproj", "{DC775DD6-2FC1-4D02-8787-07B8F9BA73FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expenselt", "Expenselt\Expenselt.csproj", "{1826CDDD-E147-4DD7-83F7-7A3823D708ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expenselt", "Expenselt\Expenselt.csproj", "{1826CDDD-E147-4DD7-83F7-7A3823D708ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfExample", "WpfExample\WpfExample.csproj", "{FFD1BEFF-0D75-4B05-AA07-059953CF8F98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyMVVM", "EasyMVVM\EasyMVVM.csproj", "{81834207-5C06-4511-8922-0A319DFD1CF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{1826CDDD-E147-4DD7-83F7-7A3823D708ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1826CDDD-E147-4DD7-83F7-7A3823D708ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1826CDDD-E147-4DD7-83F7-7A3823D708ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD1BEFF-0D75-4B05-AA07-059953CF8F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD1BEFF-0D75-4B05-AA07-059953CF8F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD1BEFF-0D75-4B05-AA07-059953CF8F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD1BEFF-0D75-4B05-AA07-059953CF8F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81834207-5C06-4511-8922-0A319DFD1CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81834207-5C06-4511-8922-0A319DFD1CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81834207-5C06-4511-8922-0A319DFD1CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81834207-5C06-4511-8922-0A319DFD1CF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
