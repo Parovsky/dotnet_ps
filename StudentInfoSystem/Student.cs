@@ -8,6 +8,7 @@ namespace StudentInfoSystem
 {
     public class Student
     {
+        public int StudentId { get; set; }
         public string FirstName { get; set; }
 
         public string SecondName { get; set; }
@@ -30,14 +31,31 @@ namespace StudentInfoSystem
 
         public int Group { get; set; }
 
-        public Student(string firstName, string secondName, string lastName, string faculty, string major, string oKS, string status, string facNum, int course, int stream, int group)
+        public byte[] Photo { get; set; }
+
+        public Student()
+        {
+            FirstName = "Ivan";
+            SecondName = "Stepanovich";
+            LastName = "Stoianov";
+            Faculty = "FCST";
+            Major = "CSE";
+            OKS = "Bachelor";
+            Status = "Редовен";
+            FacNum = "123219016";
+            Course = 3;
+            Stream = 9;
+            Group = 31;
+        }
+
+        public Student(string firstName, string secondName, string lastName, string faculty, string major, string oks, string status, string facNum, int course, int stream, int group)
         {
             FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
             SecondName = secondName ?? throw new ArgumentNullException(nameof(secondName));
             LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
             Faculty = faculty ?? throw new ArgumentNullException(nameof(faculty));
             Major = major ?? throw new ArgumentNullException(nameof(major));
-            OKS = oKS ?? throw new ArgumentNullException(nameof(oKS));
+            OKS = oks ?? throw new ArgumentNullException(nameof(oks));
             Status = status ?? throw new ArgumentNullException(nameof(status));
             FacNum = facNum ?? throw new ArgumentNullException(nameof(facNum));
             Course = course;

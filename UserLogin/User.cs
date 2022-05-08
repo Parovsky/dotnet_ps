@@ -4,6 +4,8 @@ namespace UserLogin
 {
     public class User
     {
+        public System.Int32 UserId 
+        { get; set; }
         public string Username
         { get; set; }
 
@@ -19,7 +21,7 @@ namespace UserLogin
         public DateTime Created
         { get; set; }
 
-        public DateTime ExpireOn
+        public DateTime? ExpireOn
         { get; set; }
 
         public User()

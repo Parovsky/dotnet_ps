@@ -57,7 +57,9 @@ namespace UserLogin
 
         static public User IsUserPassCorrect(string UserName, string Password)
         {
-            User user = (from u in TestUsers
+            UserContext context = new UserContext();
+
+            User user = (from u in context.Users
                           where u.Username.Equals(UserName) && u.Password.Equals(Password)
                           select u).DefaultIfEmpty(null).First();
 
@@ -78,14 +80,17 @@ namespace UserLogin
 
         static public void AssignUserRole(string UserName, UserRoles userRole)
         {
-            foreach (User user in TestUsers)
-            {
-                if (user.Username.Equals(UserName))
-                {
-                    user.Role = (int)userRole;
-                    Logger.LogActivity("Role has been changed for " + UserName);
-                }
-            }
+            UserContext context = new UserContext();
+
+            User usr =
+            (from u in context.Users
+             where u.Username.Equals(UserName)
+             select u).First();
+
+            usr.Role = (int) userRole;
+            Logger.LogActivity("Role has been changed for " + UserName);
+
+            context.SaveChanges();
         }
 
         static public void ShowUsers()
