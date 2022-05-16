@@ -41,7 +41,7 @@ namespace StudentInfoSystem
             Faculty = "FCST";
             Major = "CSE";
             OKS = "Bachelor";
-            Status = "Редовен";
+            Status = "Задочен";
             FacNum = "123219016";
             Course = 3;
             Stream = 9;

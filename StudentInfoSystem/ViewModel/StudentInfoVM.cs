@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentInfoSystem.Command;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using UserLogin;
 
 namespace StudentInfoSystem
 {
-    internal class MainFormVM : ObservableObject
+    internal class StudentInfoVM : ObservableObject
     {
         private Student _student;
         public Student Student
@@ -20,18 +22,34 @@ namespace StudentInfoSystem
             set { _student = value; RaisePropertyChangedEvent("Student"); }
         }
 
-        public List<string> StudStatusChoices { get; set; }
+        private User _user;
 
-        private TestCommand _testCommand = new TestCommand();
-
-        public TestCommand TestCommand 
-        { 
-            get { return _testCommand; } 
+        public User User
+        {
+            set
+            {
+                if(_user == null)
+                {
+                    _user = value;
+                }
+            }
+            get { return _user; }
         }
 
-        public MainFormVM()
+        public List<string> StudStatusChoices { get; set; }
+
+        private InitDataCommand _initDataCommand = new InitDataCommand();
+
+        public InitDataCommand InitDataCommand 
+        { 
+            get { return _initDataCommand; } 
+        }
+
+        public StudentInfoVM(User user)
         {
-            Student = new Student();
+            var studentValidation = new StudentValidation();
+            User = user;
+            Student = studentValidation.GetStudentDataByUser(user);
             FillStudStatusChoices();
         }
 

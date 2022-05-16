@@ -1,16 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using UserLogin;
 
 namespace StudentInfoSystem
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StudentInfo : Window
     {
-        public MainWindow()
+
+        private StudentInfoVM vm;
+
+        public StudentInfo()
         {
+            InitializeComponent();
+        }
+
+        public StudentInfo(User user)
+        {
+            vm = new StudentInfoVM(user);
+            this.DataContext = vm;
             InitializeComponent();
         }
 

@@ -16,7 +16,26 @@ namespace UserLogin
             set { }
         }
 
+        static public List<User> DatabaseUsers
+        {
+            get
+            {
+                ResetDatabaseUserData();
+                return _databaseUsers;
+            }
+        }
+
+        private static void ResetDatabaseUserData()
+        {
+            if (_databaseUsers == null)
+                _databaseUsers = new List<User>();
+        }
+
+        static private UserContext context = new UserContext();
+
         static private List<User> _testUsers;
+
+        static private List<User> _databaseUsers;
 
         static private void ResetTestUserData()
         {
@@ -55,9 +74,17 @@ namespace UserLogin
             }
         }
 
+        static public void AddUsers()
+        {
+            foreach (User u in TestUsers)
+            {
+                context.Users.Add(u);
+            }
+            context.SaveChanges();
+        }
+
         static public User IsUserPassCorrect(string UserName, string Password)
         {
-            UserContext context = new UserContext();
 
             User user = (from u in context.Users
                           where u.Username.Equals(UserName) && u.Password.Equals(Password)
@@ -68,7 +95,7 @@ namespace UserLogin
 
         static public void SetUserActiveTo(string UserName, DateTime date)
         {
-            foreach(User user in TestUsers)
+            foreach(User user in context.Users)
             {
                 if (user.Username.Equals(UserName))
                 {
@@ -76,11 +103,11 @@ namespace UserLogin
                     Logger.LogActivity("Expire date has been changed for " + UserName);
                 }
             }
+            context.SaveChanges();
         }
 
         static public void AssignUserRole(string UserName, UserRoles userRole)
         {
-            UserContext context = new UserContext();
 
             User usr =
             (from u in context.Users
@@ -93,9 +120,19 @@ namespace UserLogin
             context.SaveChanges();
         }
 
+        static public void DeleteUser(string UserName)
+        {
+            User delObj =
+            (from u in context.Users
+             where u.Username == UserName
+             select u).First();
+            context.Users.Remove(delObj);
+            context.SaveChanges();
+        }
+
         static public void ShowUsers()
         {
-            foreach(User user in TestUsers)
+            foreach(User user in context.Users)
             {
                 Console.WriteLine("Username: " + user.Username);
                 Console.WriteLine("User password: " + user.Password);

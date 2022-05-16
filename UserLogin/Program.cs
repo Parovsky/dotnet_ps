@@ -29,12 +29,12 @@ namespace UserLogin
 
                 if(user.Role == 1)
                 {
-                    while(AdminFunctionality() != 0);
+                    while(AdminFunctionality(user) != 0);
                 }
             }
         }
 
-        private static int AdminFunctionality()
+        private static int AdminFunctionality(User user)
         {
             Console.WriteLine("Choose one option:\n" +
                 "0: Exit\n" +
@@ -68,6 +68,7 @@ namespace UserLogin
             }
         }
 
+        
         private static void SetNewRole()
         {
             Console.Write("Enter username: ");
