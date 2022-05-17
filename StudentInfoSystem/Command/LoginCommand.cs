@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using UserLogin;
 
@@ -31,10 +32,21 @@ namespace StudentInfoSystem.Command
 
         public void Execute(object? parameter)
         {
-            var userLogin = parameter as UserLoginModel;
-            var user = UserData.IsUserPassCorrect(userLogin.UserName, userLogin.Password);
-            var studentInfoView = new StudentInfo(user);
-            studentInfoView.Show();
+            try
+            {
+                var userLogin = parameter as UserLoginModel;
+                var user = UserData.IsUserPassCorrect(userLogin.UserName, userLogin.Password);
+                var studentInfoView = new StudentInfo(user);
+                studentInfoView.Show();
+            }catch(UserNotFoundException)
+            {
+                MessageBox.Show("User was not found! Check your login credentials");
+            }
+            catch (StudentNotFoundException)
+            {
+                MessageBox.Show("Student was not found! User has wrond faculty number");
+            }
+
         }
     }
 }

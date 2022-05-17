@@ -11,7 +11,7 @@ namespace StudentInfoSystem
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void RaisePropertyChangedEvent(string propertyName)
+        public void RaisePropertyChangedEvent(string propertyName)
         {
             var handler = PropertyChanged;
             if (handler != null)

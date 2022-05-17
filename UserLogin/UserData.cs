@@ -88,7 +88,7 @@ namespace UserLogin
 
             User user = (from u in context.Users
                           where u.Username.Equals(UserName) && u.Password.Equals(Password)
-                          select u).DefaultIfEmpty(null).First();
+                          select u).DefaultIfEmpty(null).First() ?? throw new UserNotFoundException("User was not found");
 
             return user;
         }

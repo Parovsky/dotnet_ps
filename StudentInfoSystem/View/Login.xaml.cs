@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentInfoSystem.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,23 @@ namespace StudentInfoSystem.View
     /// </summary>
     public partial class Login : Window
     {
+        private LoginVM _loginVM = new LoginVM();
+
+        public LoginVM LoginVM
+        {
+            get { return _loginVM; }
+        }
+
         public Login()
         {
+            this.DataContext = _loginVM;
             InitializeComponent();
         }
+        private void password_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            _loginVM.UserLoginModel.Password = ((PasswordBox)sender).Password;
+            _loginVM.RaisePropertyChangedEvent("UserLogin");
+        }
+
     }
 }
